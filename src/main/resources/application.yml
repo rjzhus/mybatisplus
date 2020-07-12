@@ -15,6 +15,7 @@ mybatis-plus:
     #0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
     id-type: 0
     #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    #插入的时候，0不set值时，不出现在sql中，1，2出现在sql中插入null或者空
     field-strategy: 0
     #驼峰下划线转换
     db-column-underline: true

@@ -27,6 +27,9 @@ public class TestEmployee {
     @Resource
     private EmployeeMapper employeeMapper;
 
+    /**
+     * 删除数据
+     */
     @Test
     public void testdelete() {
         System.out.println( ("----- delete method test ------") );
@@ -41,6 +44,9 @@ public class TestEmployee {
         System.out.println( "删除行数" + insert );
     }
 
+    /**
+     * 更新数据
+     */
     @Test
     public void testUpdate() {
         System.out.println( ("----- update method test ------") );
@@ -55,22 +61,32 @@ public class TestEmployee {
         System.out.println( "更新行数" + insert );
     }
 
+    /**
+     * 插入数据
+     */
     @Test
     public void testInsert() {
         System.out.println( ("----- save method test ------") );
         Employee employee = new Employee();
-        employee.setLastName( "kity" );
+        employee.setLastName( "kubuter" );
         employee.setAge( 20 );
         employee.setGender( 1 );
-        employee.setEmail( "kity@163.com" );
+        employee.setEmail( "aliyun@163.com" );
         employee.setSalary( 100 );
         System.out.println( employee );
 
         int insert = employeeMapper.insert( employee );
         System.out.println( "插入行数" + insert );
 
+        //获取数据主键值
+        int id = employee.getId();
+        System.out.println( "主键值：" + id );
+
     }
 
+    /**
+     * 查询数据
+     */
     @Test
     public void testSelect() {
         System.out.println( ("----- selectAll method test ------") );
