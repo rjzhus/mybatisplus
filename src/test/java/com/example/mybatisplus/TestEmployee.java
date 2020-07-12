@@ -1,5 +1,8 @@
 package com.example.mybatisplus;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.dao.EmployeeMapper;
 import com.example.entity.Employee;
 import org.junit.Test;
@@ -56,10 +59,11 @@ public class TestEmployee {
     public void testInsert() {
         System.out.println( ("----- save method test ------") );
         Employee employee = new Employee();
-        employee.setLastName( "jerry" );
-        employee.setAge( 18 );
+        employee.setLastName( "kity" );
+        employee.setAge( 20 );
         employee.setGender( 1 );
-        employee.setEmail( "jerry@163.com" );
+        employee.setEmail( "kity@163.com" );
+        employee.setSalary( 100 );
         System.out.println( employee );
 
         int insert = employeeMapper.insert( employee );
@@ -74,4 +78,24 @@ public class TestEmployee {
         //Assert.assertEquals( 5, employeeList.size() );
         employeeList.forEach( System.out::println );
     }
+
+    /**
+     * 简单分页查询
+     */
+    @Test
+    public void testSelectPage() {
+        System.out.println( ("----- selectAll method test ------") );
+
+        int pageNum = 1;
+        int pageSize = 2;
+        Page<Employee> page = new Page<>( pageNum, pageSize );
+        QueryWrapper<Employee> queryWrapper = new QueryWrapper<Employee>().gt( "age", "20" );
+        //QueryWrapper<Employee> queryWrapper = new QueryWrapper<Employee>().gt( "age", "20" );
+        IPage<Employee> mpUserIPage = employeeMapper.selectPage( page, queryWrapper );
+
+        System.out.println( "总计：" + mpUserIPage.getSize() );
+        mpUserIPage.getRecords().forEach( System.out::println );
+    }
+
+
 }
